@@ -117,6 +117,36 @@ public:
 			delete prepareToDie;
 		}
 	}
+	void reverse()
+	{
+		if (head == nullptr)
+			return;
+		Node<TYPE>* current = this->head;
+		Node<TYPE>* prev = nullptr;
+		Node<TYPE>* sub = current->next;
+		while (current != nullptr)
+		{
+			current->next = prev;
+			prev = current;
+			current = sub;
+			if (sub != nullptr)
+				sub = sub->next;
+		}
+		this->head = prev;
+		return;
+	}
+	int getSize()
+	{
+		int size = 0;
+		Node<TYPE>* current;
+		current = head;
+		while (current != nullptr)
+		{
+			current = current->next;
+			size++;
+		}
+		return size;
+	}
 	void print()
 	{
 		cout << "[ ";
@@ -127,5 +157,6 @@ public:
 			current = current->next;
 		}
 		cout << " ]" << endl;
+		cout << getSize() << endl;
 	}
 };
